@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import ResponsiveImage from "@/components/ui/ResponsiveImage";
 import { smoothScrollTo } from "@/lib/utils";
-import { liveRevealText, gsap, createParallaxEffect } from "@/lib/gsap";
+import { revealWords, gsap, createParallaxEffect } from "@/lib/gsap";
 
 interface HeroSectionProps {
   headline: string;
@@ -32,8 +32,8 @@ export default function HeroSection({
     // Create timeline for hero animations
     const tl = gsap.timeline({ delay: 0.5 });
 
-    // Animate headline with live character reveal
-    tl.add(liveRevealText(headlineRef.current, 0))
+    // Animate headline with word-based reveal
+    tl.add(revealWords(headlineRef.current, 0))
       .fromTo(
         subtextRef.current,
         { opacity: 0, y: 20 },

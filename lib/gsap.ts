@@ -349,7 +349,7 @@ export const smoothScrollToElement = (target: string | Element, offset: number =
   const el = typeof target === 'string' ? document.querySelector(target) : target;
   if (!el) return;
 
-  const targetPosition = el.getBoundingClientRect().top + window.pageYOffset - offset;
+  const targetPosition = el.getBoundingClientRect().top + window.scrollY - offset;
   
   return gsap.to(window, {
     duration: 1.2,

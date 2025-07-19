@@ -17,6 +17,18 @@ export default function BusinessVerticalsSection({ verticals }: BusinessVertical
   useEffect(() => {
     if (!sectionRef.current || !titleRef.current || !cardsRef.current) return;
 
+    // Set initial hidden state for all elements
+    gsap.set(titleRef.current, { opacity: 0, y: 30 });
+    
+    const cards = Array.from(cardsRef.current.children);
+    gsap.set(cards, {
+      opacity: 0,
+      y: 80,
+      rotationX: 15,
+      scale: 0.9,
+      transformOrigin: "center bottom",
+    });
+
     // Create timeline for section animations
     const tl = gsap.timeline({ paused: true });
 
@@ -28,7 +40,6 @@ export default function BusinessVerticalsSection({ verticals }: BusinessVertical
     );
 
     // Use sophisticated card entrance animation
-    const cards = Array.from(cardsRef.current.children);
     const cardAnimation = animateCardEntrance(cards, {
       stagger: 0.15,
       duration: 1,
