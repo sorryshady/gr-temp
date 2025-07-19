@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PageTransition from "@/components/animations/PageTransition";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 const dmSerifDisplay = DM_Serif_Display({
   variable: "--font-dm-serif-display",
@@ -32,10 +33,18 @@ export default function RootLayout({
       <body
         className={`${dmSerifDisplay.variable} ${dmSans.variable} font-sans antialiased`}
       >
+        <a 
+          href="#main-content" 
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:border focus:border-gray-300 focus:rounded"
+        >
+          Skip to main content
+        </a>
         <Header />
-        <PageTransition>
-          {children}
-        </PageTransition>
+        <ErrorBoundary>
+          <PageTransition>
+            {children}
+          </PageTransition>
+        </ErrorBoundary>
         <Footer />
       </body>
     </html>

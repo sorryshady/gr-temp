@@ -13,7 +13,7 @@ export default function Navigation({ className = "", onItemClick }: NavigationPr
   const pathname = usePathname();
 
   return (
-    <nav className={className}>
+    <nav className={className} role="navigation" aria-label="Main navigation">
       {NAVIGATION_ITEMS.map((item) => {
         const isActive = pathname === item.href;
         
@@ -23,19 +23,21 @@ export default function Navigation({ className = "", onItemClick }: NavigationPr
             href={item.href}
             onClick={onItemClick}
             className={`
-              font-medium transition-colors duration-200 relative group
+              font-medium transition-colors duration-200 relative group focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 rounded px-2 py-1
               ${isActive 
                 ? 'text-gray-900' 
                 : 'text-gray-700 hover:text-gray-900'
               }
             `}
+            aria-current={isActive ? 'page' : undefined}
           >
             {item.name}
             <span 
               className={`
-                absolute -bottom-1 left-0 h-0.5 bg-gray-900 transition-all duration-200
-                ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}
+                absolute -bottom-1 left-2 right-2 h-0.5 bg-gray-900 transition-all duration-200
+                ${isActive ? 'w-auto' : 'w-0 group-hover:w-auto group-focus:w-auto'}
               `}
+              aria-hidden="true"
             />
           </Link>
         );

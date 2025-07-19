@@ -5,7 +5,7 @@ import { HERO_CONTENT, BUSINESS_VERTICALS, CONTACT_CTA } from "@/lib/constants";
 
 export default function Home() {
   return (
-    <main>
+    <main id="main-content" role="main">
       <HeroSection
         headline={HERO_CONTENT.headline}
         subtext={HERO_CONTENT.subtext}

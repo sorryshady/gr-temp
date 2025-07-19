@@ -155,12 +155,18 @@ ${formData.message}`;
   };
 
   return (
-    <main className="min-h-screen bg-white">
+    <main id="main-content" role="main">
       {/* Hero Section */}
-      <section className="pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 md:pb-20 bg-gradient-to-br from-gray-50 to-white">
+      <section 
+        className="pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 md:pb-20 bg-gradient-to-br from-gray-50 to-white"
+        aria-labelledby="contact-hero-heading"
+      >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <div ref={heroRef}>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
+            <h1 
+              id="contact-hero-heading"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-gray-900 mb-4 sm:mb-6 leading-tight"
+            >
               Let&apos;s Build Something Exceptional
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
@@ -201,9 +207,14 @@ ${formData.message}`;
                       errors.name ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="Your full name"
+                    required
+                    aria-invalid={errors.name ? 'true' : 'false'}
+                    aria-describedby={errors.name ? 'name-error' : undefined}
                   />
                   {errors.name && (
-                    <p className="mt-1 text-sm text-red-600">{errors.name}</p>
+                    <p id="name-error" className="mt-1 text-sm text-red-600" role="alert">
+                      {errors.name}
+                    </p>
                   )}
                 </div>
 
@@ -221,9 +232,14 @@ ${formData.message}`;
                       errors.email ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="your.email@company.com"
+                    required
+                    aria-invalid={errors.email ? 'true' : 'false'}
+                    aria-describedby={errors.email ? 'email-error' : undefined}
                   />
                   {errors.email && (
-                    <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+                    <p id="email-error" className="mt-1 text-sm text-red-600" role="alert">
+                      {errors.email}
+                    </p>
                   )}
                 </div>
 
@@ -256,9 +272,14 @@ ${formData.message}`;
                       errors.message ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="Tell us about your project, partnership opportunity, or how we can help..."
+                    required
+                    aria-invalid={errors.message ? 'true' : 'false'}
+                    aria-describedby={errors.message ? 'message-error' : undefined}
                   />
                   {errors.message && (
-                    <p className="mt-1 text-sm text-red-600">{errors.message}</p>
+                    <p id="message-error" className="mt-1 text-sm text-red-600" role="alert">
+                      {errors.message}
+                    </p>
                   )}
                 </div>
 

@@ -9,7 +9,22 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 // Register GSAP plugins
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+  
+  // Check for reduced motion preference
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  
+  if (prefersReducedMotion) {
+    // Disable GSAP animations for users who prefer reduced motion
+    gsap.globalTimeline.timeScale(100); // Speed up animations to near-instant
+    ScrollTrigger.config({ limitCallbacks: true }); // Limit scroll callbacks
+  }
 }
+
+// Utility to check for reduced motion preference
+export const prefersReducedMotion = () => {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+};
 
 // Default animation settings
 export const defaultEase = "power2.out";

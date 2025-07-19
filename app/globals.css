@@ -73,3 +73,71 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Focus styles for better keyboard navigation */
+*:focus {
+  outline: 2px solid #374151;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --background: #ffffff;
+    --foreground: #000000;
+    --accent: #0000ff;
+    --border: #000000;
+  }
+}
+
+/* Ensure sufficient color contrast */
+::selection {
+  background-color: #374151;
+  color: #ffffff;
+}
+
+/* Improve focus visibility for interactive elements */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid #374151;
+  outline-offset: 2px;
+}
+
+/* Ensure touch targets are at least 44px */
+@media (max-width: 768px) {
+  button,
+  a,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}

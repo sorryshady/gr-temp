@@ -74,14 +74,16 @@ export default function HeroSection({
     <section
       ref={heroRef}
       className="relative h-screen flex items-center justify-center overflow-hidden"
+      aria-labelledby="hero-heading"
+      role="banner"
     >
       {/* Background Image */}
-      <div ref={backgroundRef} className="absolute inset-0 z-0 scale-110">
+      <div ref={backgroundRef} className="absolute inset-0 z-0 scale-110" aria-hidden="true">
         <ResponsiveImage
           unsplashId={backgroundImage}
           width={1920}
           height={1080}
-          alt="GR Group Hero Background"
+          alt=""
           priority
           quality={85}
           className="w-full h-full"
@@ -100,6 +102,7 @@ export default function HeroSection({
       {/* Content */}
       <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 sm:px-6">
         <h1
+          id="hero-heading"
           ref={headlineRef}
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold mb-4 sm:mb-6 leading-tight"
         >
@@ -116,7 +119,8 @@ export default function HeroSection({
         <button
           ref={ctaRef}
           onClick={handleCTAClick}
-          className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-black font-medium text-base sm:text-lg rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-105 hover:shadow-lg touch-manipulation"
+          className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-black font-medium text-base sm:text-lg rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-105 hover:shadow-lg touch-manipulation focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+          aria-label={`${ctaText} - Scroll to What We Do section`}
         >
           {ctaText}
           <svg
@@ -124,6 +128,7 @@ export default function HeroSection({
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <path
               strokeLinecap="round"
@@ -136,7 +141,7 @@ export default function HeroSection({
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce" aria-hidden="true">
         <svg
           className="w-6 h-6"
           fill="none"

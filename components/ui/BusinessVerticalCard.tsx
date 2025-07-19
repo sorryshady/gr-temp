@@ -46,26 +46,30 @@ export default function BusinessVerticalCard({ vertical }: BusinessVerticalCardP
   }, []);
 
   const CardContent = () => (
-    <div
+    <article
       ref={cardRef}
       className={`relative bg-white rounded-lg overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl touch-manipulation ${
         vertical.isComingSoon ? "opacity-90" : ""
       }`}
+      aria-labelledby={`card-title-${vertical.id}`}
     >
       {/* Coming Soon Badge */}
       {vertical.isComingSoon && (
-        <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 bg-orange-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium">
+        <div 
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 bg-orange-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium"
+          aria-label="Coming soon"
+        >
           Coming Soon
         </div>
       )}
 
       {/* Image */}
-      <div className="card-image relative h-48 sm:h-56 md:h-64 overflow-hidden">
+      <div className="card-image relative h-48 sm:h-56 md:h-64 overflow-hidden" aria-hidden="true">
         <ResponsiveImage
           unsplashId={vertical.imageUrl}
           width={600}
           height={400}
-          alt={vertical.title}
+          alt=""
           quality={80}
           className="w-full h-full hover:scale-105"
           grayscale={vertical.isComingSoon}
@@ -82,7 +86,10 @@ export default function BusinessVerticalCard({ vertical }: BusinessVerticalCardP
 
       {/* Content */}
       <div className="card-content p-4 sm:p-6">
-        <h3 className="text-xl sm:text-2xl font-serif font-bold mb-2 text-gray-900 leading-tight">
+        <h3 
+          id={`card-title-${vertical.id}`}
+          className="text-xl sm:text-2xl font-serif font-bold mb-2 text-gray-900 leading-tight"
+        >
           {vertical.title}
         </h3>
         
@@ -96,10 +103,10 @@ export default function BusinessVerticalCard({ vertical }: BusinessVerticalCardP
 
         {/* Features */}
         <div className="mb-4">
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2 text-xs sm:text-sm text-gray-500">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2 text-xs sm:text-sm text-gray-500" aria-label={`${vertical.title} features`}>
             {vertical.features.slice(0, 4).map((feature, idx) => (
               <li key={idx} className="flex items-center">
-                <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mr-2 flex-shrink-0" />
+                <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mr-2 flex-shrink-0" aria-hidden="true" />
                 <span className="truncate">{feature}</span>
               </li>
             ))}
@@ -116,7 +123,7 @@ export default function BusinessVerticalCard({ vertical }: BusinessVerticalCardP
         )}
 
         {/* CTA */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between" aria-label="Card action">
           <span className="text-xs sm:text-sm text-gray-500">
             {vertical.isComingSoon ? "Stay tuned for updates" : "Learn more"}
           </span>
@@ -125,6 +132,7 @@ export default function BusinessVerticalCard({ vertical }: BusinessVerticalCardP
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <path
               strokeLinecap="round"
@@ -135,7 +143,7 @@ export default function BusinessVerticalCard({ vertical }: BusinessVerticalCardP
           </svg>
         </div>
       </div>
-    </div>
+    </article>
   );
 
   if (vertical.isComingSoon) {
@@ -143,7 +151,11 @@ export default function BusinessVerticalCard({ vertical }: BusinessVerticalCardP
   }
 
   return (
-    <Link href={vertical.route} className="block">
+    <Link 
+      href={vertical.route} 
+      className="block focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 rounded-lg"
+      aria-label={`Learn more about ${vertical.title} - ${vertical.tagline}`}
+    >
       <CardContent />
     </Link>
   );

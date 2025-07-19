@@ -64,10 +64,12 @@ export default function BusinessVerticalsSection({ verticals }: BusinessVertical
       ref={sectionRef}
       id="what-we-do"
       className="py-12 sm:py-16 md:py-20 bg-gray-50"
+      aria-labelledby="what-we-do-heading"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12 sm:mb-16">
           <h2
+            id="what-we-do-heading"
             ref={titleRef}
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-3 sm:mb-4"
           >
@@ -82,13 +84,16 @@ export default function BusinessVerticalsSection({ verticals }: BusinessVertical
         <div
           ref={cardsRef}
           className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8"
+          role="list"
+          aria-label="Business verticals"
         >
           {verticals.map((vertical, index) => (
-            <BusinessVerticalCard
-              key={vertical.id}
-              vertical={vertical}
-              index={index}
-            />
+            <div key={vertical.id} role="listitem">
+              <BusinessVerticalCard
+                vertical={vertical}
+                index={index}
+              />
+            </div>
           ))}
         </div>
       </div>
