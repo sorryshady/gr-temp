@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { createPageTransition } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
 interface PageTransitionProps {
   children: React.ReactNode;
@@ -10,26 +10,43 @@ interface PageTransitionProps {
 
 export default function PageTransition({ children }: PageTransitionProps) {
   const pathname = usePathname();
-  const mainRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const previousPathname = useRef<string>(pathname);
 
   useEffect(() => {
-    if (!mainRef.current) return;
+    if (!containerRef.current) return;
 
     // Only animate if the pathname has actually changed
     if (previousPathname.current !== pathname) {
-      const animation = createPageTransition('in');
+      // Page entrance animation
+      const tl = gsap.timeline();
+
+      // Set initial state
+      gsap.set(containerRef.current, {
+        opacity: 0,
+        y: 20,
+      });
+
+      // Animate in
+      tl.to(containerRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        delay: 0.1,
+      });
+
       previousPathname.current = pathname;
-      
+
       return () => {
-        animation.kill();
+        tl.kill();
       };
     }
   }, [pathname]);
 
   return (
-    <main ref={mainRef}>
+    <div ref={containerRef}>
       {children}
-    </main>
+    </div>
   );
 }

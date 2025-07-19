@@ -3,6 +3,7 @@ import { DM_Serif_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import PageTransition from "@/components/animations/PageTransition";
 
 const dmSerifDisplay = DM_Serif_Display({
   variable: "--font-dm-serif-display",
@@ -32,7 +33,9 @@ export default function RootLayout({
         className={`${dmSerifDisplay.variable} ${dmSans.variable} font-sans antialiased`}
       >
         <Header />
-        {children}
+        <PageTransition>
+          {children}
+        </PageTransition>
         <Footer />
       </body>
     </html>
