@@ -17,11 +17,12 @@ export const smoothScrollTo = (elementId: string) => {
 
 export const formatImageUrl = (unsplashId: string, width = 1200, height = 800) => {
   return `https://images.unsplash.com/${unsplashId}?w=${width}&h=${height}&fit=crop&crop=center&auto=format&q=80`;
-};/**
+};
 
+/**
  * Formats a business vertical for display
  */
-export const getVerticalById = (verticals: any[], id: string) => {
+export const getVerticalById = (verticals: { id: string }[], id: string) => {
   return verticals.find(vertical => vertical.id === id);
 };
 

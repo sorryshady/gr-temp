@@ -199,3 +199,126 @@ export const EVENTS_CONTENT = {
     "Corporate Leadership Forum"
   ]
 };
+
+export const COLLABORATIONS_CONTENT = {
+  title: "Collaborations & Community",
+  subtitle: "Co-Creating the Future.",
+  description: "Partnering with entrepreneurs, agencies, and artists to create innovative solutions and impact-first ventures.",
+  vision: "We believe the most transformative ideas emerge when diverse minds collaborate. Our upcoming collaboration hub will serve as a catalyst for creative partnerships, bringing together entrepreneurs, agencies, and artists to co-create ventures that drive positive change.",
+  focusAreas: [
+    {
+      title: "Creative Hubs",
+      description: "Physical and digital spaces where innovators, creators, and entrepreneurs can connect, collaborate, and bring ambitious ideas to life.",
+      icon: "🏢"
+    },
+    {
+      title: "Limited-Edition Projects",
+      description: "Exclusive collaborations that merge different creative disciplines to produce unique, high-impact products and experiences.",
+      icon: "✨"
+    },
+    {
+      title: "Impact-First Ventures",
+      description: "Business initiatives that prioritize social and environmental impact alongside commercial success, creating sustainable value for all stakeholders.",
+      icon: "🌱"
+    },
+    {
+      title: "Community Building",
+      description: "Fostering networks of like-minded individuals who share our commitment to innovation, creativity, and positive change.",
+      icon: "🤝"
+    }
+  ],
+  collaborationTypes: [
+    {
+      category: "Entrepreneurs",
+      description: "Supporting visionary founders with resources, mentorship, and strategic partnerships to scale their impact-driven ventures.",
+      opportunities: [
+        "Startup Incubation Programs",
+        "Strategic Partnership Development",
+        "Resource Sharing & Mentorship",
+        "Market Access & Distribution"
+      ]
+    },
+    {
+      category: "Creative Agencies",
+      description: "Partnering with agencies to develop innovative campaigns, experiences, and brand initiatives that push creative boundaries.",
+      opportunities: [
+        "Co-Creative Campaigns",
+        "Experiential Marketing Projects",
+        "Brand Innovation Labs",
+        "Cross-Industry Collaborations"
+      ]
+    },
+    {
+      category: "Artists & Creators",
+      description: "Collaborating with artists to create meaningful work that bridges commercial success with artistic expression and social impact.",
+      opportunities: [
+        "Artist Residency Programs",
+        "Limited-Edition Art Collections",
+        "Creative Workshops & Masterclasses",
+        "Public Art & Installation Projects"
+      ]
+    }
+  ],
+  upcomingPrograms: [
+    {
+      title: "Innovation Lab Launch",
+      description: "A state-of-the-art collaborative workspace equipped with cutting-edge tools and resources for creative experimentation.",
+      timeline: "Q2 2025",
+      status: "Planning Phase"
+    },
+    {
+      title: "Creator Collective Program",
+      description: "A curated community of artists, designers, and innovators working on impact-driven projects with shared resources and support.",
+      timeline: "Q3 2025",
+      status: "Applications Opening Soon"
+    },
+    {
+      title: "Impact Venture Fund",
+      description: "Investment and support program for early-stage ventures that demonstrate strong potential for positive social and environmental impact.",
+      timeline: "Q4 2025",
+      status: "Fund Development"
+    }
+  ]
+};
+
+export const VENTURES_CONTENT = {
+  title: "Lifestyle Ventures",
+  subtitle: "Fashion-Forward. Sustainable. Conscious.",
+  description: "Building the next generation of lifestyle brands that merge sustainability with craftsmanship for conscious consumers.",
+  vision: "We envision a future where fashion and lifestyle choices reflect our values — where every purchase supports artisan communities, sustainable practices, and conscious consumption. Our upcoming ventures will bridge the gap between luxury and responsibility.",
+  pillars: [
+    {
+      title: "Sustainable Fashion",
+      description: "Creating fashion-forward pieces using eco-friendly materials and ethical production methods that don't compromise on style or quality."
+    },
+    {
+      title: "Artisan Collaborations",
+      description: "Partnering with skilled craftspeople worldwide to preserve traditional techniques while creating contemporary designs."
+    },
+    {
+      title: "Conscious Consumerism",
+      description: "Educating and empowering consumers to make thoughtful choices that align with their values and lifestyle aspirations."
+    },
+    {
+      title: "Creative Partnerships",
+      description: "Collaborating with designers, artists, and creators who share our vision for a more sustainable and beautiful world."
+    }
+  ],
+  upcomingInitiatives: [
+    {
+      title: "Sustainable Luxury Collection",
+      description: "A curated line of premium fashion pieces crafted from innovative sustainable materials",
+      timeline: "Q2 2025"
+    },
+    {
+      title: "Artisan Marketplace",
+      description: "Digital platform connecting conscious consumers with skilled craftspeople globally",
+      timeline: "Q3 2025"
+    },
+    {
+      title: "Creator Incubator Program",
+      description: "Supporting emerging designers who prioritize sustainability and social impact",
+      timeline: "Q4 2025"
+    }
+  ]
+};

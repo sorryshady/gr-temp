@@ -32,9 +32,7 @@ export default function RootLayout({
         className={`${dmSerifDisplay.variable} ${dmSans.variable} font-sans antialiased`}
       >
         <Header />
-        <main className="pt-16">
-          {children}
-        </main>
+        {children}
         <Footer />
       </body>
     </html>
