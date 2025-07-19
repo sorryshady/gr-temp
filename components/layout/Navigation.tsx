@@ -1,0 +1,45 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { NAVIGATION_ITEMS } from "@/lib/constants";
+
+interface NavigationProps {
+  className?: string;
+  onItemClick?: () => void;
+}
+
+export default function Navigation({ className = "", onItemClick }: NavigationProps) {
+  const pathname = usePathname();
+
+  return (
+    <nav className={className}>
+      {NAVIGATION_ITEMS.map((item) => {
+        const isActive = pathname === item.href;
+        
+        return (
+          <Link
+            key={item.name}
+            href={item.href}
+            onClick={onItemClick}
+            className={`
+              font-medium transition-colors duration-200 relative group
+              ${isActive 
+                ? 'text-gray-900' 
+                : 'text-gray-700 hover:text-gray-900'
+              }
+            `}
+          >
+            {item.name}
+            <span 
+              className={`
+                absolute -bottom-1 left-0 h-0.5 bg-gray-900 transition-all duration-200
+                ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}
+              `}
+            />
+          </Link>
+        );
+      })}
+    </nav>
+  );
+}

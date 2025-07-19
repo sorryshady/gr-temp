@@ -1,0 +1,36 @@
+import type { Metadata } from "next";
+import { DM_Serif_Display, DM_Sans } from "next/font/google";
+import "./globals.css";
+
+const dmSerifDisplay = DM_Serif_Display({
+  variable: "--font-dm-serif-display",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+export const metadata: Metadata = {
+  title: "GR Group - Redefining Lifestyle. Driving Global Change.",
+  description: "A multidisciplinary conglomerate specializing in premium exports, signature events, lifestyle ventures, and strategic collaborations.",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body
+        className={`${dmSerifDisplay.variable} ${dmSans.variable} antialiased`}
+      >
+        {children}
+      </body>
+    </html>
+  );
+}
