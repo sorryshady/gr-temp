@@ -8,14 +8,14 @@
   - Create basic project structure with folders (components, lib, types)
   - _Requirements: 5.1, 5.3_
 
-- [-] 2. Create foundational components and layout structure
+- [x] 2. Create foundational components and layout structure
   - [x] 2.1 Build core layout components
     - Create Header component with navigation structure
     - Implement Footer component with social links and contact info
     - Build responsive navigation with mobile hamburger menu
     - _Requirements: 7.1, 4.2_
 
-  - [-] 2.2 Set up TypeScript interfaces and constants
+  - [x] 2.2 Set up TypeScript interfaces and constants
     - Define BusinessVertical, PageContent, and SiteConfig interfaces
     - Create constants file with all site content (exports, events, etc.)
     - Set up utility functions for common operations
