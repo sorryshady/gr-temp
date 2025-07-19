@@ -4,12 +4,15 @@ import { useEffect, useRef } from "react";
 import { gsap, createScrollTrigger, animateCardEntrance } from "@/lib/gsap";
 import BusinessVerticalCard from "@/components/ui/BusinessVerticalCard";
 import type { BusinessVertical } from "@/types";
+import Copy from "../animations/Copy";
 
 interface BusinessVerticalsSectionProps {
   verticals: BusinessVertical[];
 }
 
-export default function BusinessVerticalsSection({ verticals }: BusinessVerticalsSectionProps) {
+export default function BusinessVerticalsSection({
+  verticals,
+}: BusinessVerticalsSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
@@ -19,7 +22,7 @@ export default function BusinessVerticalsSection({ verticals }: BusinessVertical
 
     // Set initial hidden state for all elements
     gsap.set(titleRef.current, { opacity: 0, y: 30 });
-    
+
     const cards = Array.from(cardsRef.current.children);
     gsap.set(cards, {
       opacity: 0,
@@ -36,7 +39,7 @@ export default function BusinessVerticalsSection({ verticals }: BusinessVertical
     tl.fromTo(
       titleRef.current,
       { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
+      { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
     );
 
     // Use sophisticated card entrance animation
@@ -44,9 +47,9 @@ export default function BusinessVerticalsSection({ verticals }: BusinessVertical
       stagger: 0.15,
       duration: 1,
       ease: "power3.out",
-      from: "start"
+      from: "start",
     });
-    
+
     tl.add(cardAnimation, "-=0.3");
 
     // Create scroll trigger
@@ -75,10 +78,12 @@ export default function BusinessVerticalsSection({ verticals }: BusinessVertical
           >
             What We Do
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Four distinct verticals united by a commitment to excellence, 
-            innovation, and creating lasting impact across global markets.
-          </p>
+          <Copy>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Four distinct verticals united by a commitment to excellence,
+              innovation, and creating lasting impact across global markets.
+            </p>
+          </Copy>
         </div>
 
         <div
@@ -89,10 +94,7 @@ export default function BusinessVerticalsSection({ verticals }: BusinessVertical
         >
           {verticals.map((vertical, index) => (
             <div key={vertical.id} role="listitem">
-              <BusinessVerticalCard
-                vertical={vertical}
-                index={index}
-              />
+              <BusinessVerticalCard vertical={vertical} index={index} />
             </div>
           ))}
         </div>

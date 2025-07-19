@@ -11,19 +11,29 @@ interface BusinessVerticalCardProps {
   index: number;
 }
 
-export default function BusinessVerticalCard({ vertical }: BusinessVerticalCardProps) {
+export default function BusinessVerticalCard({
+  vertical,
+}: BusinessVerticalCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!cardRef.current) return;
 
     const cardElement = cardRef.current;
-    const imageElement = cardElement.querySelector('.card-image');
-    const contentElement = cardElement.querySelector('.card-content');
+    const imageElement = cardElement.querySelector(".card-image");
+    const contentElement = cardElement.querySelector(".card-content");
 
     // Create hover and leave animations using utilities
-    const hoverAnimation = createCardHoverAnimation(cardElement, imageElement, contentElement);
-    const leaveAnimation = createCardLeaveAnimation(cardElement, imageElement, contentElement);
+    const hoverAnimation = createCardHoverAnimation(
+      cardElement,
+      imageElement,
+      contentElement,
+    );
+    const leaveAnimation = createCardLeaveAnimation(
+      cardElement,
+      imageElement,
+      contentElement,
+    );
 
     // Enhanced hover animations with multiple elements
     const handleMouseEnter = () => {
@@ -55,7 +65,7 @@ export default function BusinessVerticalCard({ vertical }: BusinessVerticalCardP
     >
       {/* Coming Soon Badge */}
       {vertical.isComingSoon && (
-        <div 
+        <div
           className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 bg-orange-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium"
           aria-label="Coming soon"
         >
@@ -64,7 +74,10 @@ export default function BusinessVerticalCard({ vertical }: BusinessVerticalCardP
       )}
 
       {/* Image */}
-      <div className="card-image relative h-48 sm:h-56 md:h-64 overflow-hidden" aria-hidden="true">
+      <div
+        className="card-image relative h-48 sm:h-56 md:h-64 overflow-hidden"
+        aria-hidden="true"
+      >
         <ResponsiveImage
           unsplashId={vertical.imageUrl}
           width={600}
@@ -76,9 +89,9 @@ export default function BusinessVerticalCard({ vertical }: BusinessVerticalCardP
           brightness={-5}
           contrast={10}
           sizes={{
-            mobile: '100vw',
-            tablet: '50vw',
-            desktop: '33vw'
+            mobile: "100vw",
+            tablet: "50vw",
+            desktop: "33vw",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -86,27 +99,33 @@ export default function BusinessVerticalCard({ vertical }: BusinessVerticalCardP
 
       {/* Content */}
       <div className="card-content p-4 sm:p-6">
-        <h3 
+        <h3
           id={`card-title-${vertical.id}`}
           className="text-xl sm:text-2xl font-serif font-bold mb-2 text-gray-900 leading-tight"
         >
           {vertical.title}
         </h3>
-        
+
         <p className="text-orange-600 font-medium mb-3 text-xs sm:text-sm uppercase tracking-wide">
           {vertical.tagline}
         </p>
-        
+
         <p className="text-gray-600 mb-4 leading-relaxed text-sm sm:text-base">
           {vertical.description}
         </p>
 
         {/* Features */}
         <div className="mb-4">
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2 text-xs sm:text-sm text-gray-500" aria-label={`${vertical.title} features`}>
+          <ul
+            className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2 text-xs sm:text-sm text-gray-500"
+            aria-label={`${vertical.title} features`}
+          >
             {vertical.features.slice(0, 4).map((feature, idx) => (
               <li key={idx} className="flex items-center">
-                <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mr-2 flex-shrink-0" aria-hidden="true" />
+                <div
+                  className="w-1.5 h-1.5 bg-orange-500 rounded-full mr-2 flex-shrink-0"
+                  aria-hidden="true"
+                />
                 <span className="truncate">{feature}</span>
               </li>
             ))}
@@ -123,24 +142,29 @@ export default function BusinessVerticalCard({ vertical }: BusinessVerticalCardP
         )}
 
         {/* CTA */}
-        <div className="flex items-center justify-between" aria-label="Card action">
+        <div
+          className="flex items-center justify-between"
+          aria-label="Card action"
+        >
           <span className="text-xs sm:text-sm text-gray-500">
             {vertical.isComingSoon ? "Stay tuned for updates" : "Learn more"}
           </span>
-          <svg
-            className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500 flex-shrink-0"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
+          {!vertical.isComingSoon && (
+            <svg
+              className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500 flex-shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          )}
         </div>
       </div>
     </article>
@@ -151,8 +175,8 @@ export default function BusinessVerticalCard({ vertical }: BusinessVerticalCardP
   }
 
   return (
-    <Link 
-      href={vertical.route} 
+    <Link
+      href={vertical.route}
       className="block focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 rounded-lg"
       aria-label={`Learn more about ${vertical.title} - ${vertical.tagline}`}
     >
