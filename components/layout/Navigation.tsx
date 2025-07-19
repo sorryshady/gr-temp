@@ -36,8 +36,8 @@ export default function Navigation({
             {item.name}
             <span
               className={`
-                absolute -bottom-1 left-2 right-2 h-0.5 bg-gray-900 transition-all duration-200
-                ${isActive ? "w-auto" : "w-0 group-hover:w-auto group-focus:w-auto"}
+                absolute -bottom-1 left-0 h-0.5 bg-gray-900 transition-all duration-200
+                ${isActive ? "w-full" : "w-0 group-hover:w-full"}
               `}
               aria-hidden="true"
             />
