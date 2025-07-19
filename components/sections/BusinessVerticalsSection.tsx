@@ -52,17 +52,17 @@ export default function BusinessVerticalsSection({ verticals }: BusinessVertical
     <section
       ref={sectionRef}
       id="what-we-do"
-      className="py-20 bg-gray-50"
+      className="py-12 sm:py-16 md:py-20 bg-gray-50"
     >
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-12 sm:mb-16">
           <h2
             ref={titleRef}
-            className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-3 sm:mb-4"
           >
             What We Do
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Four distinct verticals united by a commitment to excellence, 
             innovation, and creating lasting impact across global markets.
           </p>
@@ -70,7 +70,7 @@ export default function BusinessVerticalsSection({ verticals }: BusinessVertical
 
         <div
           ref={cardsRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8"
         >
           {verticals.map((vertical, index) => (
             <BusinessVerticalCard

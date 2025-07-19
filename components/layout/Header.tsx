@@ -18,26 +18,27 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-14 sm:h-16">
           {/* Logo */}
           <Link 
             href="/" 
-            className="font-serif text-xl font-bold text-gray-900 hover:text-gray-700 transition-colors"
+            className="font-serif text-lg sm:text-xl font-bold text-gray-900 hover:text-gray-700 transition-colors touch-manipulation"
           >
             GR Group
           </Link>
 
           {/* Desktop Navigation */}
-          <Navigation className="hidden md:flex space-x-8" />
+          <Navigation className="hidden md:flex space-x-6 lg:space-x-8" />
 
           {/* Mobile menu button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+            className="md:hidden p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
             aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
           >
             <svg
-              className={`w-6 h-6 transition-transform duration-200 ${isMenuOpen ? 'rotate-90' : ''}`}
+              className={`w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-200 ${isMenuOpen ? 'rotate-90' : ''}`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -58,7 +59,7 @@ export default function Header() {
             : 'max-h-0 opacity-0 overflow-hidden'
         }`}>
           <Navigation 
-            className="flex flex-col space-y-2 pt-4 border-t border-gray-100 [&>a]:py-2 [&>a]:px-3 [&>a]:rounded-md [&>a]:hover:bg-gray-50"
+            className="flex flex-col space-y-1 pt-4 border-t border-gray-100 [&>a]:py-3 [&>a]:px-3 [&>a]:rounded-md [&>a]:hover:bg-gray-50 [&>a]:touch-manipulation [&>a]:min-h-[44px] [&>a]:flex [&>a]:items-center [&>a]:text-base"
             onItemClick={closeMenu}
           />
         </div>

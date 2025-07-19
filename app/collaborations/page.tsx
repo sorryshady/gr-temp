@@ -1,7 +1,6 @@
 import ContactCTASection from "@/components/sections/ContactCTASection";
 import { COLLABORATIONS_CONTENT, CONTACT_CTA } from "@/lib/constants";
-import { formatImageUrl } from "@/lib/utils";
-import Image from "next/image";
+import ResponsiveImage from "@/components/ui/ResponsiveImage";
 import AnimatedHeading from "@/components/animations/AnimatedHeading";
 
 export const metadata = {
@@ -17,12 +16,21 @@ export default function CollaborationsPage() {
       {/* Hero Section with Coming Soon Badge */}
       <section className="relative min-h-[80vh] flex items-center justify-center bg-gray-900 text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image
-            src={formatImageUrl("photo-1522202176988-66273c2fd55f", 1920, 1080)}
+          <ResponsiveImage
+            unsplashId="photo-1522202176988-66273c2fd55f"
+            width={1920}
+            height={1080}
             alt="Collaboration and teamwork"
-            fill
-            className="object-cover opacity-30"
             priority
+            quality={85}
+            className="w-full h-full opacity-30"
+            brightness={-10}
+            contrast={5}
+            sizes={{
+              mobile: '100vw',
+              tablet: '100vw',
+              desktop: '100vw'
+            }}
           />
         </div>
         

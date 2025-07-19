@@ -1,6 +1,5 @@
-import Image from "next/image";
+import ResponsiveImage from "@/components/ui/ResponsiveImage";
 import { EVENTS_CONTENT } from "@/lib/constants";
-import { formatImageUrl } from "@/lib/utils";
 import ContactCTASection from "@/components/sections/ContactCTASection";
 import { CONTACT_CTA } from "@/lib/constants";
 import AnimatedHeading from "@/components/animations/AnimatedHeading";
@@ -16,12 +15,21 @@ export default function EventsPage() {
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center justify-center bg-gray-900 text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image
-            src={formatImageUrl("photo-1492684223066-81342ee5ff30", 1920, 1080)}
+          <ResponsiveImage
+            unsplashId="photo-1492684223066-81342ee5ff30"
+            width={1920}
+            height={1080}
             alt="Luxury event showcase"
-            fill
-            className="object-cover opacity-40"
             priority
+            quality={85}
+            className="w-full h-full opacity-40"
+            brightness={-10}
+            contrast={5}
+            sizes={{
+              mobile: '100vw',
+              tablet: '100vw',
+              desktop: '100vw'
+            }}
           />
         </div>
         
@@ -195,31 +203,58 @@ export default function EventsPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="relative aspect-[4/3] rounded-lg overflow-hidden group">
-              <Image
-                src={formatImageUrl("photo-1540575467063-178a50c2df87", 800, 600)}
+              <ResponsiveImage
+                unsplashId="photo-1540575467063-178a50c2df87"
+                width={800}
+                height={600}
                 alt="Luxury automobile showcase"
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                quality={80}
+                className="w-full h-full group-hover:scale-105"
+                brightness={-5}
+                contrast={10}
+                sizes={{
+                  mobile: '100vw',
+                  tablet: '50vw',
+                  desktop: '33vw'
+                }}
               />
               <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-10 transition-all duration-300"></div>
             </div>
             
             <div className="relative aspect-[4/3] rounded-lg overflow-hidden group">
-              <Image
-                src={formatImageUrl("photo-1511578314322-379afb476865", 800, 600)}
+              <ResponsiveImage
+                unsplashId="photo-1511578314322-379afb476865"
+                width={800}
+                height={600}
                 alt="Product launch event"
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                quality={80}
+                className="w-full h-full group-hover:scale-105"
+                brightness={-5}
+                contrast={10}
+                sizes={{
+                  mobile: '100vw',
+                  tablet: '50vw',
+                  desktop: '33vw'
+                }}
               />
               <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-10 transition-all duration-300"></div>
             </div>
             
             <div className="relative aspect-[4/3] rounded-lg overflow-hidden group">
-              <Image
-                src={formatImageUrl("photo-1505236858219-8359eb29e329", 800, 600)}
+              <ResponsiveImage
+                unsplashId="photo-1505236858219-8359eb29e329"
+                width={800}
+                height={600}
                 alt="Corporate gathering"
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                quality={80}
+                className="w-full h-full group-hover:scale-105"
+                brightness={-5}
+                contrast={10}
+                sizes={{
+                  mobile: '100vw',
+                  tablet: '50vw',
+                  desktop: '33vw'
+                }}
               />
               <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-10 transition-all duration-300"></div>
             </div>

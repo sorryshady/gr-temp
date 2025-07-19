@@ -1,9 +1,8 @@
 "use client";
 
 import { createCardHoverAnimation, createCardLeaveAnimation } from "@/lib/gsap";
-import { formatImageUrl } from "@/lib/utils";
+import ResponsiveImage from "@/components/ui/ResponsiveImage";
 import type { BusinessVertical } from "@/types";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
@@ -49,51 +48,59 @@ export default function BusinessVerticalCard({ vertical }: BusinessVerticalCardP
   const CardContent = () => (
     <div
       ref={cardRef}
-      className={`relative bg-white rounded-lg overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl ${
+      className={`relative bg-white rounded-lg overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl touch-manipulation ${
         vertical.isComingSoon ? "opacity-90" : ""
       }`}
     >
       {/* Coming Soon Badge */}
       {vertical.isComingSoon && (
-        <div className="absolute top-4 right-4 z-10 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+        <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 bg-orange-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium">
           Coming Soon
         </div>
       )}
 
       {/* Image */}
-      <div className="card-image relative h-64 overflow-hidden">
-        <Image
-          src={formatImageUrl(vertical.imageUrl, 600, 400)}
+      <div className="card-image relative h-48 sm:h-56 md:h-64 overflow-hidden">
+        <ResponsiveImage
+          unsplashId={vertical.imageUrl}
+          width={600}
+          height={400}
           alt={vertical.title}
-          fill
-          className={`object-cover transition-transform duration-300 hover:scale-105 ${
-            vertical.isComingSoon ? "grayscale" : "grayscale-0"
-          }`}
+          quality={80}
+          className="w-full h-full hover:scale-105"
+          grayscale={vertical.isComingSoon}
+          brightness={-5}
+          contrast={10}
+          sizes={{
+            mobile: '100vw',
+            tablet: '50vw',
+            desktop: '33vw'
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
       </div>
 
       {/* Content */}
-      <div className="card-content p-6">
-        <h3 className="text-2xl font-serif font-bold mb-2 text-gray-900">
+      <div className="card-content p-4 sm:p-6">
+        <h3 className="text-xl sm:text-2xl font-serif font-bold mb-2 text-gray-900 leading-tight">
           {vertical.title}
         </h3>
         
-        <p className="text-orange-600 font-medium mb-3 text-sm uppercase tracking-wide">
+        <p className="text-orange-600 font-medium mb-3 text-xs sm:text-sm uppercase tracking-wide">
           {vertical.tagline}
         </p>
         
-        <p className="text-gray-600 mb-4 leading-relaxed">
+        <p className="text-gray-600 mb-4 leading-relaxed text-sm sm:text-base">
           {vertical.description}
         </p>
 
         {/* Features */}
         <div className="mb-4">
-          <ul className="grid grid-cols-2 gap-2 text-sm text-gray-500">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2 text-xs sm:text-sm text-gray-500">
             {vertical.features.slice(0, 4).map((feature, idx) => (
               <li key={idx} className="flex items-center">
                 <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mr-2 flex-shrink-0" />
-                {feature}
+                <span className="truncate">{feature}</span>
               </li>
             ))}
           </ul>
@@ -101,8 +108,8 @@ export default function BusinessVerticalCard({ vertical }: BusinessVerticalCardP
 
         {/* Testimonial */}
         {vertical.testimonial && (
-          <blockquote className="border-l-4 border-orange-500 pl-4 mb-4">
-            <p className="text-gray-700 italic text-sm">
+          <blockquote className="border-l-4 border-orange-500 pl-3 sm:pl-4 mb-4">
+            <p className="text-gray-700 italic text-xs sm:text-sm leading-relaxed">
               &ldquo;{vertical.testimonial}&rdquo;
             </p>
           </blockquote>
@@ -110,11 +117,11 @@ export default function BusinessVerticalCard({ vertical }: BusinessVerticalCardP
 
         {/* CTA */}
         <div className="flex items-center justify-between">
-          <span className="text-sm text-gray-500">
+          <span className="text-xs sm:text-sm text-gray-500">
             {vertical.isComingSoon ? "Stay tuned for updates" : "Learn more"}
           </span>
           <svg
-            className="w-5 h-5 text-orange-500"
+            className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500 flex-shrink-0"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

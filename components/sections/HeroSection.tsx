@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
-import { formatImageUrl, smoothScrollTo } from "@/lib/utils";
+import ResponsiveImage from "@/components/ui/ResponsiveImage";
+import { smoothScrollTo } from "@/lib/utils";
 import { liveRevealText, gsap, createParallaxEffect } from "@/lib/gsap";
 
 interface HeroSectionProps {
@@ -77,30 +77,38 @@ export default function HeroSection({
     >
       {/* Background Image */}
       <div ref={backgroundRef} className="absolute inset-0 z-0 scale-110">
-        <Image
-          src={formatImageUrl(backgroundImage, 1920, 1080)}
+        <ResponsiveImage
+          unsplashId={backgroundImage}
+          width={1920}
+          height={1080}
           alt="GR Group Hero Background"
-          fill
-          className="object-cover"
           priority
-          quality={90}
+          quality={85}
+          className="w-full h-full"
+          brightness={-10}
+          contrast={5}
+          sizes={{
+            mobile: '100vw',
+            tablet: '100vw',
+            desktop: '100vw'
+          }}
         />
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/40" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-6">
+      <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 sm:px-6">
         <h1
           ref={headlineRef}
-          className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 leading-tight"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold mb-4 sm:mb-6 leading-tight"
         >
           {headline}
         </h1>
         
         <p
           ref={subtextRef}
-          className="text-lg md:text-xl lg:text-2xl mb-8 max-w-2xl mx-auto leading-relaxed opacity-90"
+          className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed opacity-90"
         >
           {subtext}
         </p>
@@ -108,11 +116,11 @@ export default function HeroSection({
         <button
           ref={ctaRef}
           onClick={handleCTAClick}
-          className="inline-flex items-center px-8 py-4 bg-white text-black font-medium text-lg rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+          className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-black font-medium text-base sm:text-lg rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-105 hover:shadow-lg touch-manipulation"
         >
           {ctaText}
           <svg
-            className="ml-2 w-5 h-5"
+            className="ml-2 w-4 h-4 sm:w-5 sm:h-5"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

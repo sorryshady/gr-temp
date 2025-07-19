@@ -125,59 +125,59 @@ export default function Timeline({ items, className = '' }: TimelineProps) {
 
   return (
     <div ref={timelineRef} className={`relative ${className}`}>
-      {/* Connecting line */}
-      <div className="timeline-line absolute left-1/2 top-0 h-full w-0.5 bg-gradient-to-b from-accent via-accent to-transparent transform -translate-x-1/2 origin-top" />
+      {/* Connecting line - hidden on mobile, visible on larger screens */}
+      <div className="timeline-line absolute left-4 sm:left-1/2 top-0 h-full w-0.5 bg-gradient-to-b from-accent via-accent to-transparent sm:transform sm:-translate-x-1/2 origin-top" />
       
       {/* Timeline items */}
-      <div className="space-y-16">
+      <div className="space-y-8 sm:space-y-12 md:space-y-16">
         {items.map((item, index) => (
           <div
             key={item.id}
             ref={(el) => {
               itemsRef.current[index] = el;
             }}
-            className={`relative flex items-center ${
-              index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
-            }`}
+            className={`relative flex items-start sm:items-center ${
+              index % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'
+            } flex-row`}
           >
             {/* Timeline marker */}
-            <div className="timeline-marker absolute left-1/2 transform -translate-x-1/2 z-10">
-              <div className={`w-4 h-4 rounded-full border-4 border-white shadow-lg ${
+            <div className="timeline-marker absolute left-4 sm:left-1/2 transform -translate-x-1/2 z-10 mt-2 sm:mt-0">
+              <div className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full border-2 sm:border-4 border-white shadow-lg ${
                 item.isComingSoon ? 'bg-muted' : 'bg-accent'
               }`} />
             </div>
 
             {/* Content card */}
-            <div className={`w-5/12 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
-              <div className={`timeline-card bg-white rounded-lg p-6 shadow-lg border border-border hover:shadow-xl transition-shadow duration-300 ${
+            <div className={`w-full sm:w-5/12 ml-12 sm:ml-0 ${index % 2 === 0 ? 'sm:pr-8' : 'sm:pl-8'}`}>
+              <div className={`timeline-card bg-white rounded-lg p-4 sm:p-6 shadow-lg border border-border hover:shadow-xl transition-shadow duration-300 touch-manipulation ${
                 item.isComingSoon ? 'opacity-75' : ''
               }`}>
                 {/* Year badge */}
-                <div className={`timeline-badge inline-flex items-center px-3 py-1 rounded-full text-sm font-medium mb-3 ${
+                <div className={`timeline-badge inline-flex items-center px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium mb-2 sm:mb-3 ${
                   item.isComingSoon 
                     ? 'bg-muted text-foreground/60' 
                     : 'bg-accent/10 text-accent'
                 }`}>
                   {item.isComingSoon && (
-                    <span className="mr-2 text-xs">Coming Soon</span>
+                    <span className="mr-1 sm:mr-2 text-xs">Coming Soon</span>
                   )}
                   {item.year}
                 </div>
 
                 {/* Title */}
-                <h3 className="timeline-title text-xl font-serif font-semibold text-foreground mb-2">
+                <h3 className="timeline-title text-lg sm:text-xl font-serif font-semibold text-foreground mb-2 leading-tight">
                   {item.title}
                 </h3>
 
                 {/* Description */}
-                <p className="timeline-description text-foreground/70 leading-relaxed">
+                <p className="timeline-description text-sm sm:text-base text-foreground/70 leading-relaxed">
                   {item.description}
                 </p>
               </div>
             </div>
 
-            {/* Empty space for alternating layout */}
-            <div className="w-5/12" />
+            {/* Empty space for alternating layout - only on larger screens */}
+            <div className="hidden sm:block sm:w-5/12" />
           </div>
         ))}
       </div>
