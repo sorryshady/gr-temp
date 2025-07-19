@@ -3,6 +3,7 @@ import { EXPORTS_CONTENT } from "@/lib/constants";
 import { formatImageUrl } from "@/lib/utils";
 import ContactCTASection from "@/components/sections/ContactCTASection";
 import { CONTACT_CTA } from "@/lib/constants";
+import AnimatedHeading from "@/components/animations/AnimatedHeading";
 
 export const metadata = {
   title: "Global Exports - GR Group",
@@ -41,9 +42,13 @@ export default function ExportsPage() {
       <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mb-6">
+            <AnimatedHeading 
+              as="h2" 
+              className="font-serif text-4xl md:text-5xl text-gray-900 mb-6"
+              animationType="words"
+            >
               Our Capabilities
-            </h2>
+            </AnimatedHeading>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               We provide comprehensive export solutions backed by years of experience and a global network of trusted partners.
             </p>
@@ -70,9 +75,13 @@ export default function ExportsPage() {
       <section className="py-24 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mb-6">
+            <AnimatedHeading 
+              as="h2" 
+              className="font-serif text-4xl md:text-5xl text-gray-900 mb-6"
+              animationType="slide"
+            >
               Industries We Serve
-            </h2>
+            </AnimatedHeading>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Our expertise spans across multiple industries, ensuring specialized knowledge and tailored solutions for every sector.
             </p>
@@ -104,9 +113,13 @@ export default function ExportsPage() {
       <section className="py-24 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mb-6">
+            <AnimatedHeading 
+              as="h2" 
+              className="font-serif text-4xl md:text-5xl text-gray-900 mb-6"
+              animationType="fade"
+            >
               Our Process
-            </h2>
+            </AnimatedHeading>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               From initial consultation to final delivery, we ensure a seamless experience at every step of the export process.
             </p>

@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { formatImageUrl } from "@/lib/utils";
-import { gsap } from "@/lib/gsap";
+import { gsap, createCardHoverAnimation, createCardLeaveAnimation } from "@/lib/gsap";
 import type { BusinessVertical } from "@/types";
 
 interface BusinessVerticalCardProps {
@@ -18,26 +18,25 @@ export default function BusinessVerticalCard({ vertical }: BusinessVerticalCardP
   useEffect(() => {
     if (!cardRef.current) return;
 
-    // Create hover animations only
+    const cardElement = cardRef.current;
+    const imageElement = cardElement.querySelector('.card-image');
+    const contentElement = cardElement.querySelector('.card-content');
+
+    // Create hover and leave animations using utilities
+    const hoverAnimation = createCardHoverAnimation(cardElement, imageElement, contentElement);
+    const leaveAnimation = createCardLeaveAnimation(cardElement, imageElement, contentElement);
+
+    // Enhanced hover animations with multiple elements
     const handleMouseEnter = () => {
-      gsap.to(cardRef.current, {
-        scale: 1.02,
-        y: -5,
-        duration: 0.3,
-        ease: "power2.out",
-      });
+      leaveAnimation.pause();
+      hoverAnimation.restart();
     };
 
     const handleMouseLeave = () => {
-      gsap.to(cardRef.current, {
-        scale: 1,
-        y: 0,
-        duration: 0.3,
-        ease: "power2.out",
-      });
+      hoverAnimation.pause();
+      leaveAnimation.restart();
     };
 
-    const cardElement = cardRef.current;
     cardElement.addEventListener("mouseenter", handleMouseEnter);
     cardElement.addEventListener("mouseleave", handleMouseLeave);
 
@@ -62,7 +61,7 @@ export default function BusinessVerticalCard({ vertical }: BusinessVerticalCardP
       )}
 
       {/* Image */}
-      <div className="relative h-64 overflow-hidden">
+      <div className="card-image relative h-64 overflow-hidden">
         <Image
           src={formatImageUrl(vertical.imageUrl, 600, 400)}
           alt={vertical.title}
@@ -75,7 +74,7 @@ export default function BusinessVerticalCard({ vertical }: BusinessVerticalCardP
       </div>
 
       {/* Content */}
-      <div className="p-6">
+      <div className="card-content p-6">
         <h3 className="text-2xl font-serif font-bold mb-2 text-gray-900">
           {vertical.title}
         </h3>

@@ -63,7 +63,7 @@ export const createScrollTrigger = (
   });
 };
 
-// Text reveal animation
+// Advanced text reveal animations
 export const revealText = (element: string | Element, delay = 0) => {
   const tl = gsap.timeline({ delay });
   
@@ -81,6 +81,215 @@ export const revealText = (element: string | Element, delay = 0) => {
         ease: defaultEase,
       }
     );
+  
+  return tl;
+};
+
+// Live revealing text animation - character by character
+export const liveRevealText = (element: string | Element, delay = 0) => {
+  const el = typeof element === 'string' ? document.querySelector(element) : element;
+  if (!el) return gsap.timeline();
+
+  const text = el.textContent || '';
+  const chars = text.split('');
+  
+  // Clear the element and create spans for each character
+  el.innerHTML = '';
+  chars.forEach((char, index) => {
+    const span = document.createElement('span');
+    span.textContent = char === ' ' ? '\u00A0' : char; // Use non-breaking space
+    span.style.display = 'inline-block';
+    span.style.opacity = '0';
+    span.style.transform = 'translateY(100%)';
+    el.appendChild(span);
+  });
+
+  const charElements = el.querySelectorAll('span');
+  
+  const tl = gsap.timeline({ delay });
+  
+  tl.to(charElements, {
+    opacity: 1,
+    y: 0,
+    duration: 0.05,
+    stagger: 0.02,
+    ease: "power2.out",
+  });
+  
+  return tl;
+};
+
+// Word-based reveal animation
+export const revealWords = (element: string | Element, delay = 0) => {
+  const el = typeof element === 'string' ? document.querySelector(element) : element;
+  if (!el) return gsap.timeline();
+
+  const text = el.textContent || '';
+  const words = text.split(' ');
+  
+  // Clear the element and create spans for each word
+  el.innerHTML = '';
+  words.forEach((word, index) => {
+    const span = document.createElement('span');
+    span.textContent = word;
+    span.style.display = 'inline-block';
+    span.style.opacity = '0';
+    span.style.transform = 'translateY(50px)';
+    span.style.marginRight = '0.25em';
+    el.appendChild(span);
+  });
+
+  const wordElements = el.querySelectorAll('span');
+  
+  const tl = gsap.timeline({ delay });
+  
+  tl.to(wordElements, {
+    opacity: 1,
+    y: 0,
+    duration: 0.6,
+    stagger: 0.1,
+    ease: "power2.out",
+  });
+  
+  return tl;
+};
+
+// Smooth heading entrance animation
+export const animateHeading = (element: string | Element, delay = 0, animationType: 'fade' | 'slide' | 'words' = 'slide') => {
+  const el = typeof element === 'string' ? document.querySelector(element) : element;
+  if (!el) return gsap.timeline();
+
+  switch (animationType) {
+    case 'words':
+      return revealWords(el, delay);
+    case 'fade':
+      return gsap.fromTo(el, 
+        { opacity: 0, scale: 0.95 },
+        { opacity: 1, scale: 1, duration: defaultDuration, ease: defaultEase, delay }
+      );
+    case 'slide':
+    default:
+      return gsap.fromTo(el,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: defaultDuration, ease: defaultEase, delay }
+      );
+  }
+};
+
+// Advanced card animations
+export const createCardHoverAnimation = (cardElement: Element, imageElement?: Element | null, contentElement?: Element | null) => {
+  const tl = gsap.timeline({ paused: true });
+  
+  // Main card animation
+  tl.to(cardElement, {
+    scale: 1.03,
+    y: -8,
+    rotationY: 2,
+    boxShadow: "0 25px 50px rgba(0,0,0,0.15)",
+    duration: 0.4,
+    ease: "power2.out",
+  });
+  
+  // Image zoom effect if image element exists
+  if (imageElement) {
+    tl.to(imageElement, {
+      scale: 1.1,
+      duration: 0.4,
+      ease: "power2.out",
+    }, 0);
+  }
+  
+  // Content subtle lift if content element exists
+  if (contentElement) {
+    tl.to(contentElement, {
+      y: -2,
+      duration: 0.3,
+      ease: "power2.out",
+    }, 0.1);
+  }
+  
+  return tl;
+};
+
+export const createCardLeaveAnimation = (cardElement: Element, imageElement?: Element | null, contentElement?: Element | null) => {
+  const tl = gsap.timeline({ paused: true });
+  
+  // Reverse all animations
+  tl.to(cardElement, {
+    scale: 1,
+    y: 0,
+    rotationY: 0,
+    boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+    duration: 0.4,
+    ease: "power2.out",
+  });
+  
+  if (imageElement) {
+    tl.to(imageElement, {
+      scale: 1,
+      duration: 0.4,
+      ease: "power2.out",
+    }, 0);
+  }
+  
+  if (contentElement) {
+    tl.to(contentElement, {
+      y: 0,
+      duration: 0.3,
+      ease: "power2.out",
+    }, 0);
+  }
+  
+  return tl;
+};
+
+// Sophisticated card entrance animation
+export const animateCardEntrance = (elements: string | Element[], options: {
+  stagger?: number;
+  duration?: number;
+  ease?: string;
+  from?: 'start' | 'center' | 'end';
+} = {}) => {
+  const {
+    stagger = 0.15,
+    duration = 1,
+    ease = "power3.out",
+    from = "start"
+  } = options;
+
+  const tl = gsap.timeline();
+  
+  // Set initial state
+  tl.set(elements, {
+    opacity: 0,
+    y: 80,
+    rotationX: 15,
+    scale: 0.9,
+    transformOrigin: "center bottom",
+  });
+
+  // Create sophisticated entrance animation
+  tl.to(elements, {
+    opacity: 1,
+    y: 0,
+    rotationX: 0,
+    scale: 1,
+    duration,
+    ease,
+    stagger: {
+      amount: stagger * (Array.isArray(elements) ? elements.length : 4),
+      from,
+      ease: "power2.out",
+    },
+  })
+  
+  // Add subtle secondary animation for depth
+  .to(elements, {
+    boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+    duration: 0.5,
+    ease: "power2.out",
+    stagger: stagger / 2,
+  }, `-=${duration * 0.8}`);
   
   return tl;
 };

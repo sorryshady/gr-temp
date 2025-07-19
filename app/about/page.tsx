@@ -3,6 +3,7 @@ import Timeline from "@/components/ui/Timeline";
 import ContactCTASection from "@/components/sections/ContactCTASection";
 import { TIMELINE_ITEMS, CONTACT_CTA } from "@/lib/constants";
 import { formatImageUrl } from "@/lib/utils";
+import AnimatedHeading from "@/components/animations/AnimatedHeading";
 
 export const metadata = {
   title: "About Us - GR Group",
@@ -42,9 +43,13 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mb-8">
+              <AnimatedHeading 
+                as="h2" 
+                className="font-serif text-4xl md:text-5xl text-gray-900 mb-8"
+                animationType="words"
+              >
                 Our Philosophy
-              </h2>
+              </AnimatedHeading>
               <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
                 <p>
                   At GR Group, we believe that true innovation happens at the intersection of diverse industries and perspectives. Our multidisciplinary approach allows us to see opportunities where others see boundaries.
@@ -74,9 +79,13 @@ export default function AboutPage() {
       <section className="py-24 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mb-6">
+            <AnimatedHeading 
+              as="h2" 
+              className="font-serif text-4xl md:text-5xl text-gray-900 mb-6"
+              animationType="slide"
+            >
               Leadership & Vision
-            </h2>
+            </AnimatedHeading>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Our leadership team brings together decades of experience across diverse industries, united by a shared vision for innovation and excellence.
             </p>
@@ -126,9 +135,13 @@ export default function AboutPage() {
       <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mb-6">
+            <AnimatedHeading 
+              as="h2" 
+              className="font-serif text-4xl md:text-5xl text-gray-900 mb-6"
+              animationType="fade"
+            >
               Our Journey
-            </h2>
+            </AnimatedHeading>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               From our founding vision to our ambitious future plans, explore the milestones that define GR Group&apos;s evolution and growth.
             </p>
@@ -142,9 +155,13 @@ export default function AboutPage() {
       <section className="py-24 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mb-6">
+            <AnimatedHeading 
+              as="h2" 
+              className="font-serif text-4xl md:text-5xl text-gray-900 mb-6"
+              animationType="words"
+            >
               Our Values
-            </h2>
+            </AnimatedHeading>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               The principles that guide every decision we make and every partnership we forge.
             </p>

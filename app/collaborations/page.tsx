@@ -2,6 +2,7 @@ import ContactCTASection from "@/components/sections/ContactCTASection";
 import { COLLABORATIONS_CONTENT, CONTACT_CTA } from "@/lib/constants";
 import { formatImageUrl } from "@/lib/utils";
 import Image from "next/image";
+import AnimatedHeading from "@/components/animations/AnimatedHeading";
 
 export const metadata = {
   title: "Collaborations & Community - GR Group",
@@ -47,9 +48,13 @@ export default function CollaborationsPage() {
       {/* Vision Section */}
       <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mb-8">
+          <AnimatedHeading 
+            as="h2" 
+            className="font-serif text-4xl md:text-5xl text-gray-900 mb-8"
+            animationType="words"
+          >
             Our Collaboration Vision
-          </h2>
+          </AnimatedHeading>
           <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8">
             {COLLABORATIONS_CONTENT.vision}
           </p>
@@ -61,9 +66,13 @@ export default function CollaborationsPage() {
       <section className="py-24 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mb-6">
+            <AnimatedHeading 
+              as="h2" 
+              className="font-serif text-4xl md:text-5xl text-gray-900 mb-6"
+              animationType="slide"
+            >
               Our Focus Areas
-            </h2>
+            </AnimatedHeading>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Four key areas where we&apos;re building infrastructure and programs to support meaningful collaborations.
             </p>
@@ -89,9 +98,13 @@ export default function CollaborationsPage() {
       <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mb-6">
+            <AnimatedHeading 
+              as="h2" 
+              className="font-serif text-4xl md:text-5xl text-gray-900 mb-6"
+              animationType="fade"
+            >
               Who We Collaborate With
-            </h2>
+            </AnimatedHeading>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               We&apos;re building partnerships across diverse creative and entrepreneurial communities.
             </p>
@@ -133,9 +146,13 @@ export default function CollaborationsPage() {
       <section className="py-24 bg-gray-900 text-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl md:text-5xl mb-6">
+            <AnimatedHeading 
+              as="h2" 
+              className="font-serif text-4xl md:text-5xl mb-6"
+              animationType="words"
+            >
               Launching in 2025
-            </h2>
+            </AnimatedHeading>
             <p className="text-lg text-gray-300 max-w-2xl mx-auto">
               Exciting programs and initiatives that will bring our collaboration vision to life.
             </p>
@@ -178,9 +195,13 @@ export default function CollaborationsPage() {
       {/* Call to Action for Collaborators */}
       <section className="py-24 bg-orange-50">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mb-6">
+          <AnimatedHeading 
+            as="h2" 
+            className="font-serif text-4xl md:text-5xl text-gray-900 mb-6"
+            animationType="slide"
+          >
             Ready to Collaborate?
-          </h2>
+          </AnimatedHeading>
           <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
             Whether you&apos;re an entrepreneur with a bold vision, a creative agency looking for innovative partnerships, or an artist seeking meaningful collaboration opportunities, we&apos;d love to hear from you.
           </p>

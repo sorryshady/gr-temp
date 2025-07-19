@@ -2,6 +2,7 @@ import ContactCTASection from "@/components/sections/ContactCTASection";
 import { CONTACT_CTA, VENTURES_CONTENT } from "@/lib/constants";
 import { formatImageUrl } from "@/lib/utils";
 import Image from "next/image";
+import AnimatedHeading from "@/components/animations/AnimatedHeading";
 
 export const metadata = {
   title: "Lifestyle Ventures - GR Group",
@@ -47,9 +48,13 @@ export default function VenturesPage() {
       {/* Vision Section */}
       <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mb-8">
+          <AnimatedHeading 
+            as="h2" 
+            className="font-serif text-4xl md:text-5xl text-gray-900 mb-8"
+            animationType="words"
+          >
             Our Vision
-          </h2>
+          </AnimatedHeading>
           <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8">
             {VENTURES_CONTENT.vision}
           </p>
@@ -61,9 +66,13 @@ export default function VenturesPage() {
       <section className="py-24 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mb-6">
+            <AnimatedHeading 
+              as="h2" 
+              className="font-serif text-4xl md:text-5xl text-gray-900 mb-6"
+              animationType="slide"
+            >
               Our Foundation
-            </h2>
+            </AnimatedHeading>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Four core pillars guide our approach to building sustainable lifestyle brands that make a positive impact.
             </p>
@@ -88,9 +97,13 @@ export default function VenturesPage() {
       <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mb-6">
+            <AnimatedHeading 
+              as="h2" 
+              className="font-serif text-4xl md:text-5xl text-gray-900 mb-6"
+              animationType="fade"
+            >
               What&apos;s Coming
-            </h2>
+            </AnimatedHeading>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Exciting initiatives launching throughout 2025 that will redefine how we think about lifestyle and consumption.
             </p>
@@ -124,9 +137,13 @@ export default function VenturesPage() {
       {/* Values Section */}
       <section className="py-24 bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="font-serif text-4xl md:text-5xl mb-8">
+          <AnimatedHeading 
+            as="h2" 
+            className="font-serif text-4xl md:text-5xl mb-8"
+            animationType="words"
+          >
             Values That Drive Us
-          </h2>
+          </AnimatedHeading>
           <div className="grid md:grid-cols-3 gap-8 mt-12">
             <div className="text-center">
               <h3 className="font-serif text-xl mb-4 text-orange-400">
@@ -159,9 +176,13 @@ export default function VenturesPage() {
       {/* Stay Updated Section */}
       <section className="py-24 bg-orange-50">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mb-6">
+          <AnimatedHeading 
+            as="h2" 
+            className="font-serif text-4xl md:text-5xl text-gray-900 mb-6"
+            animationType="slide"
+          >
             Stay Updated
-          </h2>
+          </AnimatedHeading>
           <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
             Be the first to know when our lifestyle ventures launch. Join our community of conscious consumers and creative collaborators.
           </p>

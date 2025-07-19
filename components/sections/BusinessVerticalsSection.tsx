@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap, createScrollTrigger } from "@/lib/gsap";
+import { gsap, createScrollTrigger, animateCardEntrance } from "@/lib/gsap";
 import BusinessVerticalCard from "@/components/ui/BusinessVerticalCard";
 import type { BusinessVertical } from "@/types";
 
@@ -27,21 +27,16 @@ export default function BusinessVerticalsSection({ verticals }: BusinessVertical
       { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
     );
 
-    // Animate cards with stagger
-    const cards = cardsRef.current.children;
-    tl.fromTo(
-      cards,
-      { opacity: 0, y: 50, scale: 0.95 },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.8,
-        ease: "power2.out",
-        stagger: 0.15,
-      },
-      "-=0.4"
-    );
+    // Use sophisticated card entrance animation
+    const cards = Array.from(cardsRef.current.children);
+    const cardAnimation = animateCardEntrance(cards, {
+      stagger: 0.15,
+      duration: 1,
+      ease: "power3.out",
+      from: "start"
+    });
+    
+    tl.add(cardAnimation, "-=0.3");
 
     // Create scroll trigger
     createScrollTrigger(sectionRef.current, tl, {

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { formatImageUrl, smoothScrollTo } from "@/lib/utils";
-import { revealText, gsap } from "@/lib/gsap";
+import { liveRevealText, gsap } from "@/lib/gsap";
 
 interface HeroSectionProps {
   headline: string;
@@ -31,8 +31,8 @@ export default function HeroSection({
     // Create timeline for hero animations
     const tl = gsap.timeline({ delay: 0.5 });
 
-    // Animate headline with character reveal
-    tl.add(revealText(headlineRef.current, 0))
+    // Animate headline with live character reveal
+    tl.add(liveRevealText(headlineRef.current, 0))
       .fromTo(
         subtextRef.current,
         { opacity: 0, y: 20 },

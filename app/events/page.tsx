@@ -3,6 +3,7 @@ import { EVENTS_CONTENT } from "@/lib/constants";
 import { formatImageUrl } from "@/lib/utils";
 import ContactCTASection from "@/components/sections/ContactCTASection";
 import { CONTACT_CTA } from "@/lib/constants";
+import AnimatedHeading from "@/components/animations/AnimatedHeading";
 
 export const metadata = {
   title: "Signature Events - GR Group",
@@ -41,9 +42,13 @@ export default function EventsPage() {
       <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mb-6">
+            <AnimatedHeading 
+              as="h2" 
+              className="font-serif text-4xl md:text-5xl text-gray-900 mb-6"
+              animationType="words"
+            >
               Event Capabilities
-            </h2>
+            </AnimatedHeading>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               We specialize in creating exceptional experiences across multiple event categories, each designed to deliver maximum impact and lasting impressions.
             </p>
@@ -80,9 +85,13 @@ export default function EventsPage() {
       <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mb-6">
+            <AnimatedHeading 
+              as="h2" 
+              className="font-serif text-4xl md:text-5xl text-gray-900 mb-6"
+              animationType="slide"
+            >
               Notable Events
-            </h2>
+            </AnimatedHeading>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               A selection of our signature events that have made headlines and delivered exceptional results for our clients.
             </p>
@@ -104,9 +113,13 @@ export default function EventsPage() {
       <section className="py-24 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mb-6">
+            <AnimatedHeading 
+              as="h2" 
+              className="font-serif text-4xl md:text-5xl text-gray-900 mb-6"
+              animationType="fade"
+            >
               Our Event Process
-            </h2>
+            </AnimatedHeading>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               From concept to execution, we manage every detail to ensure your event exceeds expectations and achieves its objectives.
             </p>
@@ -168,9 +181,13 @@ export default function EventsPage() {
       <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mb-6">
+            <AnimatedHeading 
+              as="h2" 
+              className="font-serif text-4xl md:text-5xl text-gray-900 mb-6"
+              animationType="words"
+            >
               Event Showcase
-            </h2>
+            </AnimatedHeading>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Visual highlights from our signature events, showcasing the quality and attention to detail that defines our work.
             </p>
