@@ -104,7 +104,7 @@
     - Create hover animations with zoom and shadow effects
     - _Requirements: 5.2_
 
-  - [ ] 8.3 Add timeline and page transition animations
+  - [-] 8.3 Add timeline and page transition animations
     - Implement scroll-triggered reveals for timeline milestones
     - Add smooth page transitions and navigation animations
     - Create parallax effects for background images

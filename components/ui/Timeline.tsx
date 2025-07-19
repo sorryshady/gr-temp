@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { gsap, defaultEase, defaultDuration } from '@/lib/gsap';
+import { gsap } from '@/lib/gsap';
 import type { TimelineItem } from '@/types';
+import { useEffect, useRef } from 'react';
 
 interface TimelineProps {
   items: TimelineItem[];
@@ -17,43 +17,83 @@ export default function Timeline({ items, className = '' }: TimelineProps) {
     if (!timelineRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Animate timeline items on scroll
+      // Enhanced timeline item animations
       itemsRef.current.forEach((item, index) => {
         if (!item) return;
 
-        gsap.fromTo(
-          item,
-          {
-            opacity: 0,
-            x: index % 2 === 0 ? -50 : 50,
-            scale: 0.9,
+        const card = item.querySelector('.timeline-card');
+        const marker = item.querySelector('.timeline-marker');
+        const badge = item.querySelector('.timeline-badge');
+        const title = item.querySelector('.timeline-title');
+        const description = item.querySelector('.timeline-description');
+
+        // Create sophisticated timeline for each item
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 85%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse',
           },
-          {
-            opacity: 1,
-            x: 0,
-            scale: 1,
-            duration: defaultDuration,
-            ease: defaultEase,
-            scrollTrigger: {
-              trigger: item,
-              start: 'top 80%',
-              end: 'bottom 20%',
-              toggleActions: 'play none none reverse',
-            },
-          }
-        );
+        });
+
+        // Set initial states
+        gsap.set([card, marker], {
+          opacity: 0,
+          scale: 0.8,
+        });
+
+        gsap.set(card, {
+          x: index % 2 === 0 ? -60 : 60,
+          rotationY: index % 2 === 0 ? -15 : 15,
+        });
+
+        gsap.set([badge, title, description], {
+          opacity: 0,
+          y: 20,
+        });
+
+        // Animate marker first
+        tl.to(marker, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.4,
+          ease: "back.out(1.7)",
+        })
+        
+        // Then animate card
+        .to(card, {
+          opacity: 1,
+          scale: 1,
+          x: 0,
+          rotationY: 0,
+          duration: 0.6,
+          ease: "power2.out",
+        }, "-=0.2")
+        
+        // Finally animate content with stagger
+        .to([badge, title, description], {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+          ease: "power2.out",
+          stagger: 0.1,
+        }, "-=0.3");
       });
 
-      // Animate the connecting line
+      // Enhanced connecting line animation
       const line = timelineRef.current?.querySelector('.timeline-line');
       if (line) {
         gsap.fromTo(
           line,
-          { scaleY: 0 },
+          { 
+            scaleY: 0,
+            transformOrigin: "top center"
+          },
           {
             scaleY: 1,
-            duration: 1.5,
-            ease: defaultEase,
+            duration: 2,
+            ease: "power2.out",
             scrollTrigger: {
               trigger: timelineRef.current,
               start: 'top 80%',
@@ -62,6 +102,21 @@ export default function Timeline({ items, className = '' }: TimelineProps) {
             },
           }
         );
+      }
+
+      // Add subtle parallax effect to timeline markers
+      const markers = timelineRef.current?.querySelectorAll('.timeline-marker');
+      if (markers) {
+        markers.forEach((marker, index) => {
+          gsap.to(marker, {
+            y: -10,
+            duration: 2,
+            ease: "power1.inOut",
+            repeat: -1,
+            yoyo: true,
+            delay: index * 0.2,
+          });
+        });
       }
     }, timelineRef);
 
@@ -86,7 +141,7 @@ export default function Timeline({ items, className = '' }: TimelineProps) {
             }`}
           >
             {/* Timeline marker */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
+            <div className="timeline-marker absolute left-1/2 transform -translate-x-1/2 z-10">
               <div className={`w-4 h-4 rounded-full border-4 border-white shadow-lg ${
                 item.isComingSoon ? 'bg-muted' : 'bg-accent'
               }`} />
@@ -94,11 +149,11 @@ export default function Timeline({ items, className = '' }: TimelineProps) {
 
             {/* Content card */}
             <div className={`w-5/12 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
-              <div className={`bg-white rounded-lg p-6 shadow-lg border border-border hover:shadow-xl transition-shadow duration-300 ${
+              <div className={`timeline-card bg-white rounded-lg p-6 shadow-lg border border-border hover:shadow-xl transition-shadow duration-300 ${
                 item.isComingSoon ? 'opacity-75' : ''
               }`}>
                 {/* Year badge */}
-                <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium mb-3 ${
+                <div className={`timeline-badge inline-flex items-center px-3 py-1 rounded-full text-sm font-medium mb-3 ${
                   item.isComingSoon 
                     ? 'bg-muted text-foreground/60' 
                     : 'bg-accent/10 text-accent'
@@ -110,12 +165,12 @@ export default function Timeline({ items, className = '' }: TimelineProps) {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-serif font-semibold text-foreground mb-2">
+                <h3 className="timeline-title text-xl font-serif font-semibold text-foreground mb-2">
                   {item.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-foreground/70 leading-relaxed">
+                <p className="timeline-description text-foreground/70 leading-relaxed">
                   {item.description}
                 </p>
               </div>

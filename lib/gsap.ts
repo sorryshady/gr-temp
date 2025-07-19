@@ -3,11 +3,12 @@
  */
 
 import { gsap } from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 }
 
 // Default animation settings
@@ -95,7 +96,7 @@ export const liveRevealText = (element: string | Element, delay = 0) => {
   
   // Clear the element and create spans for each character
   el.innerHTML = '';
-  chars.forEach((char, index) => {
+  chars.forEach((char) => {
     const span = document.createElement('span');
     span.textContent = char === ' ' ? '\u00A0' : char; // Use non-breaking space
     span.style.display = 'inline-block';
@@ -129,7 +130,7 @@ export const revealWords = (element: string | Element, delay = 0) => {
   
   // Clear the element and create spans for each word
   el.innerHTML = '';
-  words.forEach((word, index) => {
+  words.forEach((word) => {
     const span = document.createElement('span');
     span.textContent = word;
     span.style.display = 'inline-block';
@@ -292,6 +293,72 @@ export const animateCardEntrance = (elements: string | Element[], options: {
   }, `-=${duration * 0.8}`);
   
   return tl;
+};
+
+// Parallax effect for background images
+export const createParallaxEffect = (element: string | Element, options: {
+  speed?: number;
+  direction?: 'up' | 'down';
+  trigger?: string | Element;
+} = {}) => {
+  const {
+    speed = 0.5,
+    direction = 'up',
+    trigger
+  } = options;
+
+  const el = typeof element === 'string' ? document.querySelector(element) : element;
+  if (!el) return null;
+
+  const yMovement = direction === 'up' ? -100 * speed : 100 * speed;
+
+  return gsap.to(el, {
+    y: yMovement,
+    ease: "none",
+    scrollTrigger: {
+      trigger: trigger || el,
+      start: "top bottom",
+      end: "bottom top",
+      scrub: true,
+    },
+  });
+};
+
+// Page transition animations
+export const createPageTransition = (direction: 'in' | 'out' = 'in') => {
+  const tl = gsap.timeline();
+  
+  if (direction === 'in') {
+    // Page entrance animation
+    tl.fromTo('main', 
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
+    );
+  } else {
+    // Page exit animation
+    tl.to('main',
+      { opacity: 0, y: -30, duration: 0.4, ease: "power2.in" }
+    );
+  }
+  
+  return tl;
+};
+
+// Smooth navigation scroll animation
+export const smoothScrollToElement = (target: string | Element, offset: number = 0) => {
+  const el = typeof target === 'string' ? document.querySelector(target) : target;
+  if (!el) return;
+
+  const targetPosition = el.getBoundingClientRect().top + window.pageYOffset - offset;
+  
+  return gsap.to(window, {
+    duration: 1.2,
+    scrollTo: {
+      y: targetPosition,
+      autoKill: true
+    },
+    ease: "power2.inOut"
+  });
 };
 
 export { gsap, ScrollTrigger };

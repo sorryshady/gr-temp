@@ -18,7 +18,7 @@ export default function ContactPage() {
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [errors, setErrors] = useState<Partial<ContactForm>>({});
 
-  const heroRef = useRef<HTMLElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLDivElement>(null);
   const infoRef = useRef<HTMLDivElement>(null);
 
@@ -161,11 +161,11 @@ ${formData.message}`;
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div ref={heroRef}>
             <h1 className="text-5xl md:text-6xl font-serif font-bold text-gray-900 mb-6">
-              Let's Build Something Exceptional
+              Let&apos;s Build Something Exceptional
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
               Ready to explore partnership opportunities or discuss your next project? 
-              We're here to turn ambitious ideas into reality.
+              We&apos;re here to turn ambitious ideas into reality.
             </p>
           </div>
         </div>
@@ -273,7 +273,7 @@ ${formData.message}`;
                 {submitStatus === "success" && (
                   <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
                     <p className="text-green-800">
-                      Thank you for your message! We'll get back to you soon.
+                      Thank you for your message! We&apos;ll get back to you soon.
                     </p>
                   </div>
                 )}
@@ -305,8 +305,8 @@ ${formData.message}`;
                     Business Inquiries
                   </h3>
                   <p className="text-gray-600 mb-4">
-                    Whether you're interested in our export services, planning a signature event, 
-                    or exploring collaboration opportunities, we'd love to hear from you.
+                    Whether you&apos;re interested in our export services, planning a signature event, 
+                    or exploring collaboration opportunities, we&apos;d love to hear from you.
                   </p>
                   <a
                     href={`mailto:${SITE_CONFIG.email}`}
@@ -324,7 +324,7 @@ ${formData.message}`;
                     Partnership Opportunities
                   </h3>
                   <p className="text-gray-600 mb-4">
-                    We're always looking for strategic partnerships that align with our vision 
+                    We&apos;re always looking for strategic partnerships that align with our vision 
                     of redefining lifestyle and driving global change.
                   </p>
                   <ul className="space-y-2 text-gray-600">

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { formatImageUrl, smoothScrollTo } from "@/lib/utils";
-import { liveRevealText, gsap } from "@/lib/gsap";
+import { liveRevealText, gsap, createParallaxEffect } from "@/lib/gsap";
 
 interface HeroSectionProps {
   headline: string;

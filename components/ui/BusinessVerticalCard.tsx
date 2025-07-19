@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { createCardHoverAnimation, createCardLeaveAnimation } from "@/lib/gsap";
+import { formatImageUrl } from "@/lib/utils";
+import type { BusinessVertical } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-import { formatImageUrl } from "@/lib/utils";
-import { gsap, createCardHoverAnimation, createCardLeaveAnimation } from "@/lib/gsap";
-import type { BusinessVertical } from "@/types";
+import { useEffect, useRef } from "react";
 
 interface BusinessVerticalCardProps {
   vertical: BusinessVertical;
