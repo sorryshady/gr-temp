@@ -83,8 +83,9 @@ export default function Copy({
           ...animationProps,
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 75%",
-            once: true,
+            start: "top 90%",
+            // markers: true,
+            toggleActions: "play none none reverse",
           },
         });
       } else {
