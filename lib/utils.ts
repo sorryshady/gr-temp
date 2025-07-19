@@ -5,12 +5,14 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const smoothScrollTo = (elementId: string) => {
-  const element = document.getElementById(elementId);
-  if (element) {
-    element.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
+export const smoothScrollTo = (elementId: string, offset: number = 80) => {
+  // Use dynamic import to avoid SSR issues
+  if (typeof window !== 'undefined') {
+    import('@/lib/gsap').then(({ smoothScrollToElement }) => {
+      const element = document.getElementById(elementId);
+      if (element) {
+        smoothScrollToElement(element, offset);
+      }
     });
   }
 };

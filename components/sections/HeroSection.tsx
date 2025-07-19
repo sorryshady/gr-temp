@@ -24,6 +24,7 @@ export default function HeroSection({
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subtextRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLButtonElement>(null);
+  const backgroundRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!heroRef.current || !headlineRef.current || !subtextRef.current || !ctaRef.current) return;
@@ -46,8 +47,21 @@ export default function HeroSection({
         "-=0.5"
       );
 
+    // Add parallax effect to background
+    let parallaxAnimation: gsap.core.Tween | null = null;
+    if (backgroundRef.current) {
+      parallaxAnimation = createParallaxEffect(backgroundRef.current, {
+        speed: 0.5,
+        direction: 'up',
+        trigger: heroRef.current
+      });
+    }
+
     return () => {
       tl.kill();
+      if (parallaxAnimation) {
+        parallaxAnimation.kill();
+      }
     };
   }, []);
 
@@ -62,7 +76,7 @@ export default function HeroSection({
       className="relative h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Background Image */}
-      <div className="absolute inset-0 z-0">
+      <div ref={backgroundRef} className="absolute inset-0 z-0 scale-110">
         <Image
           src={formatImageUrl(backgroundImage, 1920, 1080)}
           alt="GR Group Hero Background"
