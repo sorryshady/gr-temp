@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap, createScrollTrigger } from "@/lib/gsap";
+import Copy from "../animations/Copy";
 
 interface ContactCTASectionProps {
   headline: string;
@@ -27,7 +28,7 @@ export default function ContactCTASection({
     const tl = gsap.timeline({ paused: true });
 
     const elements = contentRef.current.children;
-    
+
     tl.fromTo(
       elements,
       { opacity: 0, y: 30 },
@@ -37,7 +38,7 @@ export default function ContactCTASection({
         duration: 0.8,
         ease: "power2.out",
         stagger: 0.2,
-      }
+      },
     );
 
     // Create scroll trigger
@@ -57,13 +58,15 @@ export default function ContactCTASection({
     >
       <div className="max-w-4xl mx-auto px-6 text-center">
         <div ref={contentRef}>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-            {headline}
-          </h2>
-          
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-            {description}
-          </p>
+          <Copy>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
+              {headline}
+            </h2>
+
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+              {description}
+            </p>
+          </Copy>
 
           <Link
             href={ctaLink}

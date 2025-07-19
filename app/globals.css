@@ -141,3 +141,8 @@ select:focus {
     min-width: 44px;
   }
 }
+
+.line {
+  transform: translateY(100%);
+  will-change: transform;
+}
