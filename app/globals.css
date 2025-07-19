@@ -99,10 +99,10 @@ body {
 }
 
 /* Focus styles for better keyboard navigation */
-*:focus {
+/* *:focus {
   outline: 2px solid #374151;
   outline-offset: 2px;
-}
+} */
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
@@ -121,14 +121,14 @@ body {
 }
 
 /* Improve focus visibility for interactive elements */
-button:focus,
+/* button:focus,
 a:focus,
 input:focus,
 textarea:focus,
 select:focus {
   outline: 2px solid #374151;
   outline-offset: 2px;
-}
+} */
 
 /* Ensure touch targets are at least 44px */
 @media (max-width: 768px) {
